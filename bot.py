@@ -1,14 +1,17 @@
+#
+# @author DavidAwad
+#
+#
+
 import git
 import os
 import subprocess
 import click
 import requests
-#
-# @author DavidAwad
-#
-#
+import secrets
+
 key_global = "TODO"
-user_global = "DavidAwad"
+user_global = secrets.g_user
 repo_global = "insightweets"
 
 def grab_repo(uname, repo):
@@ -63,17 +66,17 @@ def process_file(arg_file):
     print 'entry is' + str(fileEntry) + '\n'
 
 
-def create_issue(title, description):
+def create_issue(title, desc):
     # create an issue on the given repo.
+    print "https://api.github.com/repos/"+user_global+'/'+repo_global+"/issues/ -u "+secrets.g_user+':'+secrets.g_pass
 
-    r = requests.post("http://api.github.com/repos/"+user_global+'/'+repo_global+"/issues",
-            data={
-              "title": "Found a bug",
-              "body": "I'm having a problem with something. ",
-            }
+    r = requests.post(
+            "https://api.github.com/repos/"+user_global+'/'+repo_global+"/issues/ -u "+secrets.g_user+':'+secrets.g_pass ,
+              title = title
+              # body = desc
         )
     print(r.status_code, r.reason)
-    # 201 Created
+    # 201 means issue was Created
     if r.status_code != 201 :
         print "ISSUE CREATION FAILED??"
         print r
@@ -101,8 +104,8 @@ def start(key, user, repo):
     process_repo()
 
 
-# if __name__ == '__main__':
-#     start()
+#if __name__ == '__main__':
+#    start()
 
 create_issue('yolo' , 'yolo')
 
