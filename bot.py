@@ -66,14 +66,17 @@ def process_file(arg_file):
     print 'entry is' + str(fileEntry) + '\n'
 
 
-def create_issue(title, desc):
+def create_issue(_title, desc):
     # create an issue on the given repo.
-    print "https://api.github.com/repos/"+user_global+'/'+repo_global+"/issues/ -u "+secrets.g_user+':'+secrets.g_pass
-
+    print "https://api.github.com/repos/"+user_global+'/'+repo_global+"/issues"
+    # curl -X POST -u DavidAwad -i -d '{ "title" :"my cool title", "body":"body of my request"}' https://api.github.com/repos/DavidAwad/insightweets/issues
     r = requests.post(
-            "https://api.github.com/repos/"+user_global+'/'+repo_global+"/issues/ -u "+secrets.g_user+':'+secrets.g_pass ,
-              title = title
-              # body = desc
+            "https://api.github.com/repos/"+user_global+'/'+repo_global+"/issues" ,
+            data={
+                "title" : _title ,
+                "body"  :  desc
+            },
+            auth=(secrets.g_user, secrets.g_pass)
         )
     print(r.status_code, r.reason)
     # 201 means issue was Created
