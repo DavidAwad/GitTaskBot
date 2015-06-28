@@ -11,6 +11,9 @@ For that matter, if you don't want to use TODO, you can use any keyword you want
 and you'll get an alert about it.
 
 ## Usage
+Create a `secrets.py` file and edit it with your own github credentials, (the user that will be creating the issues)
+
+After you've set that up, you're all good. You can simply run the bot against any repo you want. 
 
 ```shell
 (venv)➜  PyTaskBot git:(master) python bot.py --help

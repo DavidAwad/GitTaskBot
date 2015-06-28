@@ -3,7 +3,7 @@ import os
 def file_ext(file_name):
     ext = os.path.splitext(file_name)[-1].lower()
 
-    # Now we can simply use == to check for equality, no need for wildcards.
+    # Now we can simply use == to check for equality.
     if ext == ".py":
         return "python"
     elif ext == ".js":

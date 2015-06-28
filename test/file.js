@@ -1,10 +1,15 @@
-all:
 
-run: clean
-	python bot.py -repo insightweets -user DavidAwad
 
-test: clean
-	python tests.py
+document.ready(function(){
 
-clean:
-	rm -rf local/
+
+	console.log('this is a js file ');
+
+	// TODO add a render and view function here.
+
+	console.log('render function');
+
+
+	console.log('importing resources');
+
+});

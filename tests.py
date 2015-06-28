@@ -1,22 +1,30 @@
-import bot
+from bot import *
 import unittest2
 
-# print "running testing modules. apparently "
-def median(pool):
-    copy = sorted(pool)
-    size = len(copy)
-    if size % 2 == 1:
-        return copy[(size - 1) / 2]
-    else:
-        return (copy[size/2 - 1] + copy[size/2]) / 2
+
+class TestMedian(unittest2.TestCase):
+
+    # testing for git repositories
+    def testrepo(self):
+        # download repo, folder should exist.
+        grab_repo('DavidAwad', 'insightweets')
+        self.assertEqual( True , os.path.isdir('local') )
+
+        # remove .git, shouldn't still be there
+        remove_git()
+        self.assertEqual( False , os.path.isdir('local/.git') )
+
+        # remove local dir, shouldn't still be there
+        remove_local()
+        self.assertEqual( False , os.path.isdir('local/.git') )
+        self.assertEqual( False , os.path.isdir('local') )
+
+        return
 
 
-class TestMedian(unittest.TestCase):
-
-    # example test
-    def testMedian(self):
-        self.failUnlessEqual(median([2, 9, 9, 7, 9, 2, 4, 5, 8]), 7)
-
+    def scrape_file(self):
+        self.assertEquals(True ,process_repo())
+        return
 
 if __name__ == '__main__':
     unittest2.main()

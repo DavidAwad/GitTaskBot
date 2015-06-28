@@ -19,15 +19,27 @@ user_global = ''
 repo_global = ''
 
 def grab_repo(uname, repo):
+    if os.path.isdir('local'):
+        remove_local()
     # clone repo into local directory.
     git.Repo.clone_from('https://github.com/'+uname+'/'+repo, 'local/')
+    if os.path.isdir('local'):
+        remove_git()
+    return
+
+def remove_git():
+    print 'cleaning out the .git folder'
+    proc = subprocess.Popen('rm -rf local/.git', stdout=subprocess.PIPE, shell=True)
+    proc.communicate() # pipe output to STDOUT
+
+def remove_local():
+    print 'cleaning out the local folder'
+    proc = subprocess.Popen('rm -rf local', stdout=subprocess.PIPE, shell=True)
+    proc.communicate() # pipe output to STDOUT
 
 
 # recursively traverse through a directory
 def process_repo():
-    print 'cleaning out the .git folder'
-    proc = subprocess.Popen('rm -rf local/.git', stdout=subprocess.PIPE, shell=True)
-    proc.communicate() # pipe output to STDOUT
     # traverse root directory, and list directories as dirs and files as files
     for root, dirs, files in os.walk("local/"):
         # path = root.split('/')
@@ -41,6 +53,7 @@ def process_repo():
         for dirent in dirs:
             iter_direc('local/'+dirent)
 
+        return True
 # Recursively traverse the directory tree to find files and maintain paths
 # note: this isn't an optimal way to do this as it attempts all possibilities
 # and simply executes the algorithms on the ones that exist.
@@ -120,7 +133,6 @@ def create_issue(_title, desc):
         )
     print r.status_code
     print r.text
-
     return
 
 
