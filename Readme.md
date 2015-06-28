@@ -1,4 +1,4 @@
-# GitTaskBot
+# GitTaskBot [![Build Status](https://travis-ci.org/DavidAwad/SpaceShare.svg?branch=master)](https://travis-ci.org/DavidAwad/gitTodoBot)
 
 This is a python app to run against your projects to make sure you don't have
 any extra TODO's you haven't missed, if you have TODOs laying around or a large
@@ -13,7 +13,7 @@ and you'll get an alert about it.
 ## Usage
 Create a `secrets.py` file and edit it with your own github credentials, (the user that will be creating the issues)
 
-After you've set that up, you're all good. You can simply run the bot against any repo you want. 
+After you've set that up, you're all good. You can simply run the bot against any repo you want.
 
 ```shell
 (venv)➜  PyTaskBot git:(master) python bot.py --help
