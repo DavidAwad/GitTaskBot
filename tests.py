@@ -18,7 +18,6 @@ class TestMedian(unittest2.TestCase):
         remove_local()
         self.assertEqual( False , os.path.isdir('local/.git') )
         self.assertEqual( False , os.path.isdir('local') )
-
         return
 
 
